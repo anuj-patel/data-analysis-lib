@@ -1,126 +1,46 @@
-# Stack Overflow Survey Analysis Toolkit
+# Stack Overflow Survey Data Analysis Library
 
-[![PyPI version](https://img.shields.io/pypi/v/so_survey.svg)](https://pypi.org/project/so_survey/)
-[![Build Status](https://img.shields.io/travis/so-survey/so-survey)](https://travis-ci.org/so-survey/so-survey)
-[![Coverage](https://img.shields.io/codecov/c/github/so-survey/so-survey)](https://codecov.io/gh/so-survey/so-survey)
-[![License](https://img.shields.io/github/license/so-survey/so-survey)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/so-survey/so-survey)](https://github.com/so-survey/so-survey)
+This library provides tools to analyze Stack Overflow Survey data from an XLSX file. It supports:
+- Displaying the survey structure (list of questions)
+- Searching for specific questions/options
+- Creating respondent subsets based on question+option
+- Displaying answer distributions for single and multiple choice questions
+- CLI/REPL interface for interactive use
 
-A Python toolkit for loading, analyzing, and extracting insights from [Stack  
-Overflow's annual developer survey datasets](https://docs.google.com/spreadsheets/d/1GWck4UAZoBGaOh0-DcZtHmjJo03ftnDr/edit?usp=drive_link&ouid=112488483413794074219&rtpof=true&sd=true). This package provides both a  
-command-line interface and a programmatic API for working with survey data.
+## Setup
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Modules](#modules)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Installation
-
-This package requires Python 3.7 or higher.
-
-```bash
-pip install so_survey
-```
+1. Ensure you have Python 3.8+ installed.
+2. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. Place your Stack Overflow survey XLSX file in the project root (e.g., `so_2024_raw.xlsx`).
 
 ## Usage
 
-The `so_survey` package provides a command-line interface for common operations:
-
-### List available datasets
-
-```bash
-so_survey catalog
+### CLI/REPL
+Run the CLI/REPL interface:
+```sh
+python -m stack_survey.cli so_2024_raw.xlsx
 ```
 
-### Load and preview a dataset
-
-```bash
-so_survey load survey_2022 --head 10
+### Library
+You can also use the library in your own Python scripts:
+```python
+from stack_survey.survey import Survey
+survey = Survey('so_2024_raw.xlsx')
+survey.display_structure()
 ```
 
-### Filter a dataset by column values
-
-```bash
-so_survey subset survey_2022 --column Language --values "Python" \
-  --output filtered_data.csv
+## Running Tests
+Run all unit tests with:
+```sh
+python -m unittest discover tests
 ```
 
-### Calculate statistics on a dataset
-
-```bash
-so_survey stats survey_2022 --columns YearsCodePro Salary
-```
-
-## Modules
-
-The package is organized into several modules:
-
-- **loader.py**: Handles loading survey data from CSV files into pandas  
-  DataFrames with appropriate data type inference.
-- **catalog.py**: Manages dataset discovery and provides utilities for listing  
-  and accessing available datasets.
-- **subset.py**: Offers functionality for filtering and creating subsets of  
-  survey data based on column values or ranges.
-- **stats.py**: Implements statistical functions for analyzing survey data  
-  including descriptive statistics.
-- **cli.py**: Provides a command-line interface with commands for interacting  
-  with the survey data.
-
-## Contributing
-
-Contributions to the Stack Overflow Survey Analysis Toolkit are welcome!
-
-### Development Setup
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/so-survey/so-survey.git
-cd so-survey
-```
-
-1. Install development dependencies:
-
-```bash
-pip install -e ".[dev]"
-```
-
-### Development Workflow
-
-- **Run tests**:
-
-  ```bash
-  pytest
-  ```
-
-- **Lint code**:
-
-  ```bash
-  flake8 .
-  ```
-
-- **Type checking**:
-
-  ```bash
-  mypy .
-  ```
-
-### Pull Requests
-
-Before submitting a pull request, please ensure that:
-
-- Your code passes all tests
-- Your code passes flake8 linting
-- Your code passes mypy type checking
-- You've added tests for any new functionality
-- You've updated documentation as needed
-
-## License
-
-This project is licensed under the MIT License - see the
-[LICENSE](LICENSE) file for details.
-
+## Project Structure
+- `stack_survey/` - Main library code
+- `tests/` - Unit tests
+- `so_2024_raw.xlsx` - Survey data file
+- `requirements.txt` - Python dependencies
+- `README.md` - This file
