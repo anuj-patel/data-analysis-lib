@@ -6,8 +6,8 @@
 [![License](https://img.shields.io/github/license/so-survey/so-survey)](LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/so-survey/so-survey)](https://github.com/so-survey/so-survey)
 
-A Python toolkit for loading, analyzing, and extracting insights from Stack  
-Overflow's annual developer survey datasets. This package provides both a  
+A Python toolkit for loading, analyzing, and extracting insights from [Stack  
+Overflow's annual developer survey datasets](https://docs.google.com/spreadsheets/d/1GWck4UAZoBGaOh0-DcZtHmjJo03ftnDr/edit?usp=drive_link&ouid=112488483413794074219&rtpof=true&sd=true). This package provides both a  
 command-line interface and a programmatic API for working with survey data.
 
 ## Table of Contents
